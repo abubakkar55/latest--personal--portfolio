@@ -1,0 +1,136 @@
+.header {
+    height: 8.5rem;
+    padding: 2.3rem 0;
+    z-index: 55;
+
+    @include breakpoint-down(medium) {
+        height: 7rem;
+    }
+
+    //  scroll to navbar fixed
+    &.fixed-nav {
+        transition: background-color 2s ease-in-out;
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        right: 0;
+        bottom: 0;
+        background-color: $white-color;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.navbar {
+    z-index: 56;
+    position: relative;
+
+    // mobile navbar style
+    &__main {
+        @include breakpoint-down(large) {
+            width: 40vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            flex-direction: column;
+            justify-content: center;
+            background-image: $gradient-color;
+            transform: translateX(-100%);
+            transition: transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+
+        @include breakpoint-down(medium) {
+            width: 55vw;
+        }
+    }
+
+    // after navbar toggle
+    &.open .navbar__main {
+        transform: translateX(0);
+    }
+
+    &__logo {
+        font-size: 2.5rem;
+        font-weight: bold;
+        @include color-trans;
+        text-transform: uppercase;
+
+        @include breakpoint-down(medium) {
+            font-size: 1.8rem;
+        }
+    }
+
+    &__links {
+        &:not(:last-child) {
+            margin-right: 3rem;
+
+            // mobile navbar style
+            @include breakpoint-down(large) {
+                margin: .7rem 0;
+            }
+        }
+
+        & a {
+            text-transform: uppercase;
+            color: $black-color;
+            font-weight: 500;
+            position: relative;
+
+            // dover underline style
+            &::before {
+                position: absolute;
+                bottom: -.3rem;
+                content: "";
+                width: 100%;
+                height: .3rem;
+                background-image: $gradient-color;
+                transform: scale(0);
+                transition: transform 0.4s ease-in-out;
+            }
+            &:hover::before{
+                transform: scale(1);
+            }
+             // mobile navbar style
+             @include breakpoint-down(large) {
+                -webkit-text-fill-color: $white-color;
+            }
+        }
+    }
+
+    // navbar hamburger
+    &__hamburger {
+        width: 2.5rem;
+        height: 1.7rem;
+        //background-color: red;
+        cursor: pointer;
+
+        &>span {
+            display: block;
+            width: 100%;
+            height: .3rem;
+            background-color: $black-color;
+            transform-origin: 1px center;
+            transition: all 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+            &:not(:last-child) {
+                margin-bottom: .5rem;
+            }
+        }
+    }
+
+    //after navbar toggleing style
+    &.open .navbar__hamburger span {
+        &:first-child {
+            transform: rotate(45deg);
+        }
+
+        &:nth-child(2) {
+            opacity: 0;
+        }
+
+        &:last-child {
+            transform: rotate(-45deg);
+        }
+    }
+}

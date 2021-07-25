@@ -1,0 +1,339 @@
+@import "__var.scss";
+@import "__mixings.scss";
+@import "__classes.scss";
+@import "__header.scss";
+
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//=========================== Common Styles =============================
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+
+    &.no-scroll {
+        overflow: hidden;
+    }
+}
+
+a,
+a:active,
+a:visited {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: $black-color;
+    margin-bottom: 1.3rem;
+}
+
+//hero 
+.hero {
+    @include section;
+
+    &__container {
+        @include display-flex;
+
+        &>div {
+            flex-basis: 50%;
+
+            @include breakpoint-down(medium) {
+                flex-basis: 100%;
+            }
+        }
+    }
+
+    &__text {
+        @include breakpoint-down(medium) {
+            order: 2;
+        }
+    }
+
+    &__large {
+        font-size: 5rem;
+        line-height: 3rem;
+        position: relative;
+
+        @include breakpoint-down(medium) {
+            font-size: 3rem;
+        }
+
+        &::after {
+            height: .3rem;
+            background-color: $black-color;
+            width: 50%;
+            content: "";
+            position: absolute;
+            right: 14rem;
+            top: 2rem;
+
+            @include breakpoint-down(medium) {
+                right: 5rem;
+            }
+        }
+    }
+
+    &__md {
+        font-size: 2.4rem;
+        margin-bottom: 2rem;
+
+        @include breakpoint-down(medium) {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        &+a.btn {
+            margin-right: 2rem;
+        }
+    }
+
+    &__banner {
+        @include breakpoint-down(medium) {
+            order: 1;
+        }
+
+        .banner__img {
+            @include img-style;
+        }
+    }
+}
+
+//about 
+.about {
+    @include section;
+    padding: 2rem 0;
+
+    &__container {
+        @include display-flex;
+
+        &>div {
+            flex-basis: 50%;
+        }
+    }
+
+    &__text {
+        & .about__font {
+            letter-spacing: 1.2rem;
+            font-size: 4.9rem;
+            text-transform: uppercase;
+            line-height: 6.5rem;
+
+            @include breakpoint-down(medium) {
+                font-size: 3rem;
+                line-height: 4rem;
+            }
+        }
+    }
+
+    &__banner img {
+        @include img-style;
+    }
+}
+
+
+//exper 
+.exper {
+    @include section;
+
+    &__container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 11rem;
+
+        @include breakpoint-down(medium) {
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__company {
+        .company__container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+
+            @include breakpoint-down(medium) {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            // comapny img div style
+            &>div {
+                border: 1px solid #ddd;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100px;
+                width: 190px;
+                transition: transform 0.5s ease-in-out;
+
+                @include breakpoint-down(medium) {
+                    height: 60px;
+                    width: 125px;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                }
+
+                &>.company__img {
+                    width: 80px;
+                }
+            }
+        }
+    }
+
+    // right section style
+    &__call {
+        position: relative;
+        background-color: #FEF6F6;
+
+        & .experi__info {
+            position: absolute;
+            left: -20%;
+            top: 10%;
+            width: 200px;
+            height: 170px;
+
+            @include breakpoint-down(medium) {
+                width: 150px;
+                height: 100px;
+                left: 0;
+            }
+        }
+    }
+
+    &__call {
+        height: 35rem;
+    }
+
+    &__info__container {
+        padding: 2rem;
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+
+        & .info__heading {
+            font-size: 7.4rem;
+            margin-bottom: 0;
+            @include color-trans;
+            margin-right: .7rem;
+
+            @include breakpoint-down(medium) {
+                font-size: 5rem;
+            }
+        }
+
+        & .info__first {
+            & .info__heading {
+                &+span {
+                    font-size: 2.2rem;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+// service
+.service {
+    &__heading {
+        padding: 3rem;
+    }
+
+    &__item__container {
+        margin-bottom: 5rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background-color: #F8FCFD;
+
+        @include breakpoint-down(large) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include breakpoint-down(medium) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    &__item {
+        padding: 5rem 1rem 3rem;
+        transition: all 0.5s ease-in-out;
+        text-align: center;
+
+        &:hover {
+            transform: scale(1);
+            background-color: #fff;
+            box-shadow: .1rem .1rem .7rem rgba(0, 0, 0, 0.5);
+        }
+
+        & .service__img {
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+//subscribe
+.subscribe {
+    padding: 3rem 0;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 2rem;
+        background: url(../img/subscribe-bg.png) no-repeat center center;
+        height: 50rem;
+@include breakpoint-down(medium){
+height: 100vh;
+text-align: center;
+}
+        & h1,
+        p {
+            color: $white-color;
+        }
+    }
+    &__form {
+        margin-top: 2rem;
+::placeholder{
+    font-family: Poppins;
+    font-weight: 500;
+}
+        & input {
+            padding: .8rem;
+            width: 40rem;
+            height: 5rem;
+            border: 3px solid #ddd;
+            margin: 0 2rem 2rem 0  ;
+            &:focus{
+                outline: none;
+            }
+            @include breakpoint-down(medium){
+width: 20rem;
+            }                
+        }
+& button.btn{
+    border: 2px solid $white-color;
+    padding: 1.5rem 3rem;
+}
+    }
+}
